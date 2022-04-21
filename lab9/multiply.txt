@@ -1,0 +1,40 @@
+Object* Number::multiply(const Object* other) const{
+    if(typeid(*this) == typeid(*other)){
+        Number *n = (Number*)other;
+        Number N;
+        N.num = this->num * n->num;
+        Object *out = new Number(N.num);
+        return out;
+    }
+    else{
+        Coord3D * C = (Coord3D*)other;
+        Coord3D Cord;
+        Cord.x = C->x * this->num;
+        Cord.y = C->y * this->num;
+        Cord.z = C->z * this->num;
+        Object * out = new Coord3D(Cord.x, Cord.y, Cord.z);
+        return out;
+    }
+}
+
+Object * Coord3D::multiply(const Object* other) const{
+    Coord3D *Check = (Coord3D*)other;
+    if(typeid(*this) != typeid(*other)){
+        Number * n = (Number*)other;
+        Coord3D Cord;
+        Cord.x = this->x * n->num;
+        Cord.y = this->y * n->num;
+        Cord.z = this->z * n->num;
+        Object *out = new Coord3D(Cord.x, Cord.y, Cord.z);
+        return out;
+    }
+    else{
+        Coord3D * C = (Coord3D*)other;
+        Coord3D Cord;
+        Cord.x = this->x * C->x;
+        Cord.y = this->y * C->y;
+        Cord.z = this->z * C->z;
+        Object *out = new Coord3D(Cord.x, Cord.y, Cord.z);
+        return out;
+    }
+}
