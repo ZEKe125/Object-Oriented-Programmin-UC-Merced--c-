@@ -8,14 +8,12 @@ public:
 	int ID;
 	static int count;
 
-	Counter() : ID(count++)
-	{
+	Counter() : ID(count++){
 
-		// cout << this->ID << " created" << endl;
-	};
+					// cout << this->ID << " created" << endl;
+				};
 
-	~Counter()
-	{
+	~Counter(){
 		// cout << this->ID << " destroyed" << endl;
 	};
 
@@ -32,10 +30,10 @@ public:
 	// }
 
 	void *operator new[](size_t sz)
-	{	
+	{
 		int s = count;
-		cout << "new " << (sz / sizeof(Counter)) + 1 ;
-		 cout << " counters startying at " << s << endl;
+		cout << "new " << (sz / sizeof(Counter)) - 2;
+		cout << " counters startying at " << s << endl;
 
 		return ::new char[sz]; // call global new
 	}
